@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tank Task</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Water Tank Task</h1>
+        <div class="InputField">
+            <p>Enter the block's heights: </p>
+            <input type="text" id="inputblock" placeholder="Enter block heights separated by commas" />
+            <button id="button" onclick="visualizeWater()">Visualize</button>    
+        </div>
+        <div id="errorMessage" class="error"></div>
+        <div id="tablesContainer">
+            <div id="input"></div>
+            <div id="statsTableContainer"></div>
+            <div id="output"></div>
+            <div id="waterTableContainer"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.InputField {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+#inputblock {
+    width: 350px;
+    height: 20px;
+}
+
+#button {
+    height: 25px;
+    width: 100px;
+}
+
+.container {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+td {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.block {
+    background-color: yellow;
+}
+
+.water {
+    background-color: rgb(59, 180, 255);
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+
