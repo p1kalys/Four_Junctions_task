@@ -27,8 +27,7 @@ server.listen(8081, () => {
   console.log("Server running on http://localhost:8081/")
 })
 
-const MONGO_URL =
-  "mongodb+srv://gibsongaleo:3nyKYp0fpyyB3GE4@cluster0.zfxlih3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" 
+const MONGO_URL = "Enter your MONGO_URL here"
 
 mongoose.Promise = Promise
 mongoose.connect(MONGO_URL)
