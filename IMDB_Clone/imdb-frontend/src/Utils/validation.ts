@@ -3,18 +3,18 @@ import { z } from "zod"
 export const signUpValidationSchema = z.object({
   name: z
     .string()
-    .min(3, { message: "Minimum legngth of password should be 3" })
-    .max(50, { message: "Maximum legngth of password should be 50" }),
+    .min(3, { message: "Minimum length of name should be 3" })
+    .max(50, { message: "Maximum length of name should be 50" }),
   number: z
     .string()
     .min(10, { message: "Minimum number is 10" })
-    .regex(/^\d+$/, { message: "Invalid number" }),
+    .regex(/^\d+$/, { message: "Invalid Phone number" }),
   password: z
     .string()
-    .min(6, { message: "Minimum legngth of password should be 6" })
+    .min(8, { message: "Minimum length of password should be 8" })
     .regex(
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]+$/,
-      "Password must have at least 6 characters, including a number, a special character, and a capital letter"
+      "Password must have at least 8 characters, including a number, a special character, a lowercase letter and a camelcase letter"
     ),
 })
 
@@ -25,17 +25,17 @@ export const loginValidationSchema = z.object({
     .regex(/^\d+$/, { message: "Invalid number" }),
   password: z
     .string()
-    .min(6, { message: "Minimum legngth of password should be 6" })
+    .min(8, { message: "Minimum length of password should be 8" })
     .regex(
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]+$/,
-      "Password must have at least 6 characters, including a number, a special character, and a capital letter"
+      "Password must have at least 8 characters, including a number, a special character, a lowercase letter and a camelcase letter"
     ),
 })
 
 export const actorValidationSchema = z.object({
   name: z
     .string()
-    .min(3, { message: "Name must be at least 2 characters long" }),
+    .min(3, { message: "Name must be at least 3 characters long" }),
   gender: z
     .string()
     .min(4, { message: "Gender must be either Male or Female" }),

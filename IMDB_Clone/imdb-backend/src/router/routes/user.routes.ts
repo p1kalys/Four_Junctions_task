@@ -6,5 +6,5 @@ import {
 // import { LOGGED_IN_USER } from "../../middlewares/auth.middleware"
 
 export default (router: Router) => {
-  router.post("/users", getAllUsers)
+  router.get("/users", getAllUsers)
 }

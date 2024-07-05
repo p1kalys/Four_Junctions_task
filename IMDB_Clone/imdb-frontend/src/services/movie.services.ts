@@ -8,7 +8,7 @@ import { Movie, MovieResponse } from "../types/movie"
 
 class MovieService {
   getAllMovies() {
-    return http.post<Array<MovieResponse>>(MOVIES_BY_USERID_ENDPOINT)
+    return http.get<Array<MovieResponse>>(MOVIES_BY_USERID_ENDPOINT)
   }
   insertMovie(movie: Movie) {
     return http.post<MovieResponse>(INSERT_MOVIE_ENDPOINT, movie)

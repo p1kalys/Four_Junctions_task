@@ -7,7 +7,7 @@ import { Actor, ActorResponse } from "../types/actor"
 
 class ActorService {
   getAllActors() {
-    return http.post<Array<ActorResponse>>(ALL_ACTORS_ENDPOINT)
+    return http.get<Array<ActorResponse>>(ALL_ACTORS_ENDPOINT)
   }
   insertActor(actor: Actor) {
     return http.post<ActorResponse>(INSERT_ACTOR_ENDPOINT, actor)
