@@ -21,6 +21,7 @@ class Solution {
     this.properties = properties;
     this.totalUnit = totalUnit;
     this.combinations = [];
+    this.memo = {};
   }
 
   findCount() {
@@ -33,32 +34,28 @@ class Solution {
     return arr;
   }
 
-  generateCombinations(presentArray, actualArray) {
-    if (presentArray.every((val) => val === 0)) return;
+  generateCombinations(presentArray) {
+    const queue = [presentArray.slice()];
 
-    if (this.validCombination(presentArray)) {
-      const totalEarning = this.calculateEarnings(presentArray);
-      this.combinations.push(totalEarning);
-    }
+    while (queue.length > 0) {
+      const currentArray = queue.shift();
 
-    let newArray = presentArray.slice();
-    const n = presentArray.length;
+      if (currentArray.every((val) => val === 0)) continue;
 
-    for (let i = n - 1; i >= 0; i--) {
-      if (presentArray[i] > 0) {
-        newArray[i]--;
-        this.generateCombinations(newArray, actualArray);
-        break;
-      } else {
-        newArray[i] = actualArray[i];
-        if (i > 0) continue;
+      if (this.memo[currentArray.toString()] !== undefined) continue;
 
-        if (newArray[i - 1] > 0) {
-          newArray[i - 1]--;
-          for (let j = i; j < n; j++) {
-            newArray[j] = actualArray[j];
-          }
-          this.generateCombinations(newArray, actualArray);
+      if (this.validCombination(currentArray)) {
+        const totalEarning = this.calculateEarnings(currentArray);
+        this.combinations.push(totalEarning);
+      }
+
+      this.memo[currentArray.toString()] = true;
+
+      for (let i = 0; i < currentArray.length; i++) {
+        if (currentArray[i] > 0) {
+          const newArray = currentArray.slice();
+          newArray[i]--;
+          queue.push(newArray);
         }
       }
     }
@@ -97,7 +94,7 @@ class Solution {
     });
 
     // Solutions with the maximum earning
-    this.combinations.forEach((earning, index) => {
+    this.combinations.forEach((earning) => {
       if (earning.earning === maxEarning) {
         let str = `${solutions.length + 1}. `;
         for (let i = 0; i < earning.combination.length; i++) {
@@ -109,7 +106,7 @@ class Solution {
 
     // Print results
     console.log(`Time Unit: ${this.totalUnit}`);
-    console.log(`Earnings: $${maxEarning}\n Solutions:`);
+    console.log(`Earnings: $${maxEarning}\nSolutions:`);
     solutions.forEach((solution) => console.log(solution));
   }
 }
@@ -124,7 +121,7 @@ const properties = [
 rl.question("Enter total units: ", (totalUnits) => {
   const manager = new Solution(properties, parseInt(totalUnits));
   const arr = manager.findCount();
-  manager.generateCombinations(arr, arr);
+  manager.generateCombinations(arr);
   manager.printMaxEarnings();
   rl.close();
 });

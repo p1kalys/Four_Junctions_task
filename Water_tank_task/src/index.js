@@ -1,26 +1,30 @@
 function calculateWater(arr) {
   let n = arr.length;
   if (n <= 2) return 0;
-
+  let maxHeight = Math.max(...arr);
   let left = 0,
     right = n - 1;
   let leftMax = 0,
     rightMax = 0;
   let water = 0;
 
-  while (left < right) {
-    if (arr[left] < arr[right]) {
-      arr[left] >= leftMax
-        ? (leftMax = arr[left])
-        : (water += leftMax - arr[left]);
-      left++;
-    } else {
-      arr[right] >= rightMax
-        ? (rightMax = arr[right])
-        : (water += rightMax - arr[right]);
-      right--;
-    }
+  for(let i=0; i < arr.length; i++) {
+    water += maxHeight - arr[i];
   }
+
+  // while (left < right) {
+  //   if (arr[left] < arr[right]) {
+  //     arr[left] >= leftMax
+  //       ? (leftMax = arr[left])
+  //       : (water += leftMax - arr[left]);
+  //     left++;
+  //   } else {
+  //     arr[right] >= rightMax
+  //       ? (rightMax = arr[right])
+  //       : (water += rightMax - arr[right]);
+  //     right--;
+  //   }
+  // }
   return water;
 }
 
@@ -78,8 +82,8 @@ function renderTable(
       if (includeHeights && height >= i) {
         td.classList.add("block");
       } else {
-        const leftMax = Math.max(...blocks.slice(0, index + 1));
-        const rightMax = Math.max(...blocks.slice(index));
+        const leftMax = Math.max(...blocks.slice(0, index + 1), maxBlockHeight);
+        const rightMax = Math.max(...blocks.slice(index), maxBlockHeight);
         if (i <= leftMax && i <= rightMax && height < i) {
           td.classList.add("water");
         }
